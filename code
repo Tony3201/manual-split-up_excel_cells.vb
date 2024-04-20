@@ -1,0 +1,24 @@
+
+Sub SplitCell(target As Range, rowNum As Integer, colNum As Integer)
+    Dim rng As Range
+    Dim top As Shape
+    Dim bottom As Shape
+    Set rng = target
+    rngHeight = rng.RowHeight
+    rngWidth = rng.ColumnWidth
+    rngtop = rng.top
+    rngLeft = rng.Left
+    cellWidth = rng.Width - 2.5
+    rng.RowHeight = rngHeight * rowNum
+    rng.ColumnWidth = rngWidth * colNum
+    For r = 0 To rowNum - 1
+        For c = 0 To colNum - 1
+            Set top = ActiveSheet.Shapes.AddTextbox(msoTextOrientationHorizontal, _
+            rngLeft + cellWidth * c, rngtop + rngHeight * r, cellWidth, rngHeight)
+        Next
+    Next
+End Sub
+
+Sub SplitCellTest()
+    SplitCell Range("B11"), 3, 3
+End Sub
